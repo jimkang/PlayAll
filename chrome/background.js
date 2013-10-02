@@ -8,7 +8,7 @@ function doWhenSwfObjectIsLoaded() {
 
 function doWhenPageComberIsLoaded() {
   chrome.tabs.executeScript(null, {
-    file: "playall.js",
+    file: "playerloader.js",
     allFrames: true
   });
 }

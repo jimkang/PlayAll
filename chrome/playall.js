@@ -1,34 +1,17 @@
-// window.onYouTubePlayerReady = 
-// function onYouTubePlayerReady(playerId) {
-//   debugger;
-//   alert('ready!');
-//   PlayAll.player = document.getElementById('playAllPlayer');
-// }
-
-
-// window.addEventListener('YouTubePlayerReady', onYouTubePlayerReady);
-
 var PlayAll = {
-  pageComber: createPageComber(),
   URLs: [],
   player: null
 };
 
-PlayAll.addPlayerReadyListener = function addPlayerReadyListener() {
-  // You can't add a window event listener from a content script, so we gotta 
-  // do this.
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.innerHTML = 
-    'function onYouTubePlayerReady(playerId) {alert("ready!"); PlayAll.respondToPlayerReady();}';
-  (document.head || document.body || document.documentElement)
-    .appendChild(script);
-};
-
 PlayAll.playAll = function playAll() {
-  this.addPlayerReadyListener();
+  this.player = document.getElementById('playAllPlayer');
+  if (!this.player) {
+    return;
+  }
+  
+  alert('oy!');
 
-  this.URLs = this.pageComber.collectYouTubeURLs();
+  this.URLs = this.collectYouTubeURLs();
 
   if (this.URLs.length < 1) {
     return;
@@ -160,7 +143,19 @@ PlayAll.createPlayerContainerElement = function createPlayerContainerElement() {
 };
 
 PlayAll.respondToPlayerReady = function respondToPlayerReady() {
+  debugger;
   this.player = document.getElementById('playAllPlayer');
+  this.player.cueVideoById({videoId: 'qkUVToIfrKg'});
 };
+
+PlayAll.collectYouTubeURLs = function collectYouTubeURLs() {
+  var URLs = [];
+  var linkEls = document.querySelectorAll('a[href*="youtube.com"]');
+  for (var i = 0; i < linkEls.length; ++i) {
+    var linkEl = linkEls[i];
+    URLs.push(linkEl.href);
+  }
+  return URLs;
+}
 
 PlayAll.playAll();
