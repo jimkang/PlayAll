@@ -10,23 +10,11 @@ PlayAll.playAll = function playAll() {
   if (!this.player) {
     return;
   }
-  
-  alert('oy!');
-
   this.URLs = this.collectYouTubeURLs();
 
   if (this.URLs.length < 1) {
     return;
   }
-
-  var playerContainerEl = this.createPlayerContainerElement();
-
-  var params = {allowScriptAccess: "always"};
-  var atts = {id: "playAllPlayer"};
-  swfobject.embedSWF(
-    // this.URLs[0] + '?enablejsapi=1&playerapiid=ytplayer&version=3',
-    "http://www.youtube.com/v/FAvQSkK8Z8U?enablejsapi=1&playerapiid=ytplayer&version=3",
-     'playAllPlayer', '700', '418', '8', null, null, params, atts);
 };
 
 PlayAll.createPlayerContainerElement = function createPlayerContainerElement() {
