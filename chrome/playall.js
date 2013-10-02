@@ -1,3 +1,5 @@
+// This is meant to run in the context of the post page in a <script> tag.
+
 var PlayAll = {
   URLs: [],
   player: null
@@ -158,4 +160,7 @@ PlayAll.collectYouTubeURLs = function collectYouTubeURLs() {
   return URLs;
 }
 
-PlayAll.playAll();
+function onYouTubePlayerReady(playerId) {
+  debugger;
+  PlayAll.playAll();
+}
