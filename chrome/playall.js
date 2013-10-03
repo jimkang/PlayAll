@@ -2,7 +2,7 @@
 
 var PlayAll = {
   videoIds: [],
-  nowPlayingIndex: -1,
+  nowPlayingIndex: 0,
   player: null
 };
 
@@ -23,12 +23,6 @@ PlayAll.start = function start() {
     this.kill.bind(this));
 
   this.videoIds = this.collectYouTubeIds();
-
-  if (this.videoIds.length < 1) {
-    return;
-  }
-
-  this.playNext();
 };
 
 PlayAll.playNext = function playNext() {

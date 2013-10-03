@@ -1,7 +1,4 @@
-var PlayerLoader = {
-  pageComber: createPageComber(),
-  URLs: []
-};
+var PlayerLoader = {};
 
 PlayerLoader.addPlayerReadyListener = function addPlayerReadyListener() {
   // You can't add a window event listener from a content script, so we gotta 
@@ -35,6 +32,7 @@ function createPlayerContainerElement() {
   closeButton.id = 'closeButton';
   closeButton.innerHTML = 'Close';
   closeButton.style.float = 'right';
+  closeButton.style.marginBottom = '4px';
 
   playerContainer.appendChild(closeButton);
 
@@ -77,22 +75,43 @@ PlayerLoader.load = function load() {
     return;
   }
 
-  this.addPlayerReadyListener();
-
-  this.URLs = this.pageComber.collectYouTubeURLs();
-
-  if (this.URLs.length < 1) {
+  var linkEl = document.querySelector('a[href*="youtube.com"]');
+  var firstVideoId = this.getQueryParamFromURL(linkEl.href, 'v');
+  if (!firstVideoId) {
     return;
   }
 
+  this.addPlayerReadyListener();
   var playerContainerEl = this.createPlayerContainerElement();
 
+  var firstVideoURL = 'http://www.youtube.com/v/' + firstVideoId + 
+    '?enablejsapi=1&playerapiid=ytplayer&version=3';
   var params = {allowScriptAccess: "always"};
   var atts = {id: "playAllPlayer"};
-  swfobject.embedSWF(
-    // this.URLs[0] + '?enablejsapi=1&playerapiid=ytplayer&version=3',
-    "http://www.youtube.com/v/FAvQSkK8Z8U?enablejsapi=1&playerapiid=ytplayer&version=3",
-     'playAllPlayer', '700', '418', '8', null, null, params, atts);
+  swfobject.embedSWF(firstVideoURL, 'playAllPlayer', '700', '418', '8', 
+    null, null, params, atts);
+};
+
+// Unfortunate copy of the function from PlayAll (PlayAll runs in the page 
+// context, so sharing code is tough).
+PlayerLoader.getQueryParamFromURL = function getQueryParamFromURL(url, param) {
+  var val = null;
+  var linkParts = url.split('?');
+  if (linkParts.length > 1) {
+    var queryString = linkParts[1];
+    var queryParts = queryString.split('&');
+    for (var i = 0; i < queryParts.length; ++i) {
+      var queryPart = queryParts[i];
+      var keyAndValue = queryPart.split('=');
+      if (keyAndValue.length === 2) {
+        if (keyAndValue[0] === param) {
+          val = keyAndValue[1];
+          break;
+        }
+      }
+    }
+  }
+  return val;
 };
 
 PlayerLoader.load();
