@@ -9,24 +9,28 @@ PlayerLoader.addPlayerReadyListener = function addPlayerReadyListener() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = chrome.extension.getURL('playall.js');
-  // script.innerHTML = 'PlayAll.playAll()';
   (document.head || document.body || document.documentElement)
     .appendChild(script);
 };
 
-PlayerLoader.createPlayerContainerElement = function createPlayerContainerElement() {
+PlayerLoader.createPlayerContainerElement = 
+function createPlayerContainerElement() {
+  var playerWidth = 700;
+  var playerHeight = 418;
+
   var playerContainer = document.createElement('div');
   playerContainer.id = 'playerContainer';
+  playerContainer.style.position = 'fixed';
+  playerContainer.style.top = '50%';
+  playerContainer.style.left = '50%';
+  playerContainer.style.marginLeft = '-' + playerWidth/2 + 'px';
+  playerContainer.style.marginTop = '-' + playerHeight/2 + 'px';
   document.body.appendChild(playerContainer);
 
   var playerStub = document.createElement('div');
   playerStub.id = 'playAllPlayer';
-  playerStub.style.width = 700;
-  playerStub.style.height = 418;
-  playerStub.style.marginLeft = 'auto';
-  playerStub.style.marginRight = 'auto';
-  playerStub.style.marginTop = 'auto';
-  playerStub.style.marginBottom = 'auto';
+  playerStub.style.width = playerWidth;
+  playerStub.style.height = playerHeight;
   playerContainer.appendChild(playerStub);
 
   return playerContainer;
