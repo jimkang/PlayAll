@@ -25,13 +25,29 @@ function createPlayerContainerElement() {
   playerContainer.style.left = '50%';
   playerContainer.style.marginLeft = '-' + playerWidth/2 + 'px';
   playerContainer.style.marginTop = '-' + playerHeight/2 + 'px';
+  playerContainer.style.paddingLeft = '1em';
+  playerContainer.style.paddingRight = '1em';
+  playerContainer.style.backgroundColor = 'purple';
+
   document.body.appendChild(playerContainer);
 
   var playerStub = document.createElement('div');
   playerStub.id = 'playAllPlayer';
   playerStub.style.width = playerWidth;
   playerStub.style.height = playerHeight;
+
   playerContainer.appendChild(playerStub);
+
+  // playerContainer.appendChild(document.createElement('br'));
+
+  var nextButton = document.createElement('button');
+  nextButton.id = 'nextButton';
+  nextButton.innerHTML = 'Next';
+  nextButton.style.display = 'block';
+  nextButton.style.marginLeft = 'auto';
+  nextButton.style.marginRight = '0px';
+
+  playerContainer.appendChild(nextButton);
 
   return playerContainer;
 };
