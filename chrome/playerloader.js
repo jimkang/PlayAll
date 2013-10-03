@@ -22,9 +22,12 @@ function createPlayerContainerElement() {
   playerContainer.style.left = '50%';
   playerContainer.style.marginLeft = '-' + playerWidth/2 + 'px';
   playerContainer.style.marginTop = '-' + playerHeight/2 + 'px';
-  playerContainer.style.paddingLeft = '1em';
-  playerContainer.style.paddingRight = '1em';
-  playerContainer.style.backgroundColor = 'purple';
+  playerContainer.style.paddingLeft = '8px';
+  playerContainer.style.paddingRight = '8px';
+  playerContainer.style.paddingTop = '4px';
+  playerContainer.style.paddingBottom = '4px';
+  playerContainer.style.borderRadius = '4px'; 
+  playerContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
 
   document.body.appendChild(playerContainer);
 
