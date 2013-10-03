@@ -3,7 +3,7 @@
 
   "name": "PlayAll",
   "description": "Plays all the YouTube links it can find in a web page, one after another.",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "permissions": [
     "tabs",
