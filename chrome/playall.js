@@ -55,7 +55,9 @@ PlayAll.collectYouTubeIds = function collectYouTubeIds() {
     var linkEl = linkEls[i];
     var theId = this.getQueryParamFromURL(linkEl.href, 'v');
     if (theId) {
-      ids.push(theId);
+      if (ids.indexOf(theId) === -1) {
+        ids.push(theId);
+      }
     }
   }
   return ids;
