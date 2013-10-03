@@ -38,8 +38,13 @@ function createPlayerContainerElement() {
 
   playerContainer.appendChild(playerStub);
 
-  // playerContainer.appendChild(document.createElement('br'));
+  this.createButtonsForContainer(playerContainer);
 
+  return playerContainer;
+};
+
+PlayerLoader.createButtonsForContainer = 
+function createButtonsForContainer(playerContainer) {
   var nextButton = document.createElement('button');
   nextButton.id = 'nextButton';
   nextButton.innerHTML = 'Next';
@@ -67,7 +72,14 @@ function createPlayerContainerElement() {
 
   playerContainer.appendChild(closeButton);
 
-  return playerContainer;
+  // var hideButton = document.createElement('button');
+  // hideButton.id = 'hideButton';
+  // hideButton.innerHTML = 'hide';
+  // hideButton.style.display = 'block';
+  // hideButton.style.marginLeft = '0px';
+  // hideButton.style.marginRight = 'auto';
+
+  // playerContainer.appendChild(hideButton);
 };
 
 PlayerLoader.load = function load() {
