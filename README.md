@@ -3,7 +3,10 @@ PlayAll
 
 Chrome extensions that finds all of the YouTube links in a page, then plays them sequentially within the page.
 
-To install the extension:
+If you just want to use it, [go here](https://chrome.google.com/webstore/detail/playall/kjjpmnjffnbppejcphlilgchikkbpgif) and ignore the rest of this.
+
+Installing the extension from source
+------------------------------------
 
 1. Go to Extensions in Chrome.
 2. Check "Developer mode".
