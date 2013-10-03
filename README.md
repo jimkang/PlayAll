@@ -1,7 +1,7 @@
 PlayAll
 =======
 
-Chrome extensions that finds all of the YouTube links in a page, then plays them sequentially within the page.
+Chrome extension that finds all of the YouTube links in a page, then plays them sequentially within the page.
 
 If you just want to use it, [go here](https://chrome.google.com/webstore/detail/playall/kjjpmnjffnbppejcphlilgchikkbpgif) and ignore the rest of this.
 
