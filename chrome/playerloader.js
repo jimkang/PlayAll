@@ -78,7 +78,7 @@ PlayerLoader.load = function load() {
     return;
   }
 
-  var linkEl = document.querySelector('a[href*="youtube.com"]');
+  var linkEl = document.querySelector('a[href*="youtube.com"][href*="v="]');
   var firstVideoId = this.getQueryParamFromURL(linkEl.href, 'v');
   if (!firstVideoId) {
     return;

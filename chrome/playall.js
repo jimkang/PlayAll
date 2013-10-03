@@ -50,7 +50,7 @@ PlayAll.kill = function kill() {
 
 PlayAll.collectYouTubeIds = function collectYouTubeIds() {
   var ids = [];
-  var linkEls = document.querySelectorAll('a[href*="youtube.com"]');
+  var linkEls = document.querySelectorAll('a[href*="youtube.com"][href*="v="]');
   for (var i = 0; i < linkEls.length; ++i) {
     var linkEl = linkEls[i];
     var theId = this.getQueryParamFromURL(linkEl.href, 'v');
