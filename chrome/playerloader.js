@@ -87,7 +87,7 @@ PlayerLoader.load = function load() {
   this.addPlayerReadyListener();
   var playerContainerEl = this.createPlayerContainerElement();
 
-  var firstVideoURL = 'http://www.youtube.com/v/' + firstVideoId + 
+  var firstVideoURL = 'https://www.youtube.com/v/' + firstVideoId + 
     '?enablejsapi=1&playerapiid=ytplayer&version=3';
   var params = {allowScriptAccess: "always"};
   var atts = {id: "playAllPlayer"};
