@@ -12,7 +12,7 @@ PlayAll.start = function start() {
     console.log('Playall could not get the video player.');
     return;
   }
-  
+
   PlayAll.player.addEventListener('onStateChange', 'onYouTubePlayerStateChange');
 
   this.videoIds = this.collectYouTubeIds();
@@ -27,24 +27,6 @@ PlayAll.start = function start() {
 PlayAll.playNext = function playNext() {
   ++this.nowPlayingIndex;
   this.player.loadVideoById(this.videoIds[this.nowPlayingIndex]);
-};
-
-PlayAll.createPlayerContainerElement = function createPlayerContainerElement() {
-  var playerContainer = document.createElement('div');
-  playerContainer.id = 'playerContainer';
-  document.body.appendChild(playerContainer);
-
-  var playerStub = document.createElement('div');
-  playerStub.id = 'playAllPlayer';
-  playerStub.style.width = 700;
-  playerStub.style.height = 418;
-  playerStub.style.marginLeft = 'auto';
-  playerStub.style.marginRight = 'auto';
-  playerStub.style.marginTop = 'auto';
-  playerStub.style.marginBottom = 'auto';
-  playerContainer.appendChild(playerStub);
-
-  return playerContainer;
 };
 
 PlayAll.collectYouTubeIds = function collectYouTubeIds() {
@@ -87,7 +69,6 @@ function onYouTubePlayerReady(playerId) {
 function onYouTubePlayerStateChange(newState) {
   // YT.PlayerState.ENDED
   if (0 === newState) {
-    debugger;
     PlayAll.playNext();
   }
 };
