@@ -53,6 +53,11 @@ function createPlayerContainerElement() {
 };
 
 PlayerLoader.load = function load() {
+  var existingPlayerContainer = document.querySelector('#playerContainer');
+  if (existingPlayerContainer) {
+    return;
+  }
+
   this.addPlayerReadyListener();
 
   this.URLs = this.pageComber.collectYouTubeURLs();
