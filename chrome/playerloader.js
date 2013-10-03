@@ -31,44 +31,10 @@ function createPlayerContainerElement() {
 
   document.body.appendChild(playerContainer);
 
-  var playerStub = document.createElement('div');
-  playerStub.id = 'playAllPlayer';
-  playerStub.style.width = playerWidth;
-  playerStub.style.height = playerHeight;
-
-  playerContainer.appendChild(playerStub);
-
-  this.createButtonsForContainer(playerContainer);
-
-  return playerContainer;
-};
-
-PlayerLoader.createButtonsForContainer = 
-function createButtonsForContainer(playerContainer) {
-  var nextButton = document.createElement('button');
-  nextButton.id = 'nextButton';
-  nextButton.innerHTML = 'Next';
-  nextButton.style.display = 'block';
-  nextButton.style.marginLeft = 'auto';
-  nextButton.style.marginRight = '0px';
-
-  playerContainer.appendChild(nextButton);
-
-  var prevButton = document.createElement('button');
-  prevButton.id = 'prevButton';
-  prevButton.innerHTML = 'Previous';
-  prevButton.style.display = 'block';
-  prevButton.style.marginLeft = 'auto';
-  prevButton.style.marginRight = '0px';
-
-  playerContainer.appendChild(prevButton);
-
   var closeButton = document.createElement('button');
   closeButton.id = 'closeButton';
   closeButton.innerHTML = 'Close';
-  closeButton.style.display = 'block';
-  closeButton.style.marginLeft = '0px';
-  closeButton.style.marginRight = 'auto';
+  closeButton.style.float = 'right';
 
   playerContainer.appendChild(closeButton);
 
@@ -80,6 +46,29 @@ function createButtonsForContainer(playerContainer) {
   // hideButton.style.marginRight = 'auto';
 
   // playerContainer.appendChild(hideButton);
+
+  var playerStub = document.createElement('div');
+  playerStub.id = 'playAllPlayer';
+  playerStub.style.width = playerWidth;
+  playerStub.style.height = playerHeight;
+
+  playerContainer.appendChild(playerStub);
+
+  var nextButton = document.createElement('button');
+  nextButton.id = 'nextButton';
+  nextButton.innerHTML = 'Next';
+  nextButton.style.float = 'right';
+
+  playerContainer.appendChild(nextButton);
+
+  var prevButton = document.createElement('button');
+  prevButton.id = 'prevButton';
+  prevButton.innerHTML = 'Previous';
+  prevButton.style.float = 'left';
+
+  playerContainer.appendChild(prevButton);
+
+  return playerContainer;
 };
 
 PlayerLoader.load = function load() {
