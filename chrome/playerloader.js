@@ -49,6 +49,24 @@ function createPlayerContainerElement() {
 
   playerContainer.appendChild(nextButton);
 
+  var prevButton = document.createElement('button');
+  prevButton.id = 'prevButton';
+  prevButton.innerHTML = 'Previous';
+  prevButton.style.display = 'block';
+  prevButton.style.marginLeft = 'auto';
+  prevButton.style.marginRight = '0px';
+
+  playerContainer.appendChild(prevButton);
+
+  var closeButton = document.createElement('button');
+  closeButton.id = 'closeButton';
+  closeButton.innerHTML = 'Close';
+  closeButton.style.display = 'block';
+  closeButton.style.marginLeft = '0px';
+  closeButton.style.marginRight = 'auto';
+
+  playerContainer.appendChild(closeButton);
+
   return playerContainer;
 };
 

@@ -15,6 +15,13 @@ PlayAll.start = function start() {
 
   PlayAll.player.addEventListener('onStateChange', 'onYouTubePlayerStateChange');
 
+  document.querySelector('#nextButton').addEventListener('click',
+    this.playNext.bind(this));
+  document.querySelector('#prevButton').addEventListener('click',
+    this.playPrev.bind(this));
+  document.querySelector('#closeButton').addEventListener('click',
+    this.kill.bind(this));
+
   this.videoIds = this.collectYouTubeIds();
 
   if (this.videoIds.length < 1) {
@@ -26,7 +33,25 @@ PlayAll.start = function start() {
 
 PlayAll.playNext = function playNext() {
   ++this.nowPlayingIndex;
+  if (this.nowPlayingIndex >= this.videoIds.length) {
+    this.nowPlayingIndex = this.videoIds.length - 1;
+  }
+
   this.player.loadVideoById(this.videoIds[this.nowPlayingIndex]);
+};
+
+PlayAll.playPrev = function playPrev() {
+  --this.nowPlayingIndex;
+  if (this.nowPlayingIndex < 0) {
+    this.nowPlayingIndex = 0;
+  }
+  this.player.loadVideoById(this.videoIds[this.nowPlayingIndex]);
+};
+
+PlayAll.kill = function kill() {
+  this.player.stopVideo();
+  var container = document.querySelector('#playerContainer');
+  container.parentNode.removeChild(container);
 };
 
 PlayAll.collectYouTubeIds = function collectYouTubeIds() {
