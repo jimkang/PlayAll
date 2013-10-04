@@ -78,10 +78,16 @@ PlayerLoader.load = function load() {
     return;
   }
 
-  var linkEl = document.querySelector('a[href*="youtube.com"][href*="v="]');
+  var linkEl = document.querySelector(
+    'a[href*="youtube.com"][href*="v="], a[href*="youtu.be"]'
+  );
+
   var firstVideoId = this.getQueryParamFromURL(linkEl.href, 'v');
   if (!firstVideoId) {
-    return;
+    firstVideoId = this.findIdFromShortYouTubeURL(linkEl.href);
+    if (!firstVideoId) {
+      return;
+    }
   }
 
   this.addPlayerReadyListener();
@@ -115,6 +121,16 @@ PlayerLoader.getQueryParamFromURL = function getQueryParamFromURL(url, param) {
     }
   }
   return val;
+};
+
+// Copied from playall.js content script.
+PlayerLoader.findIdFromShortYouTubeURL = function findIdFromShortYouTubeURL(url) {
+  var theId = null;
+  var segments = url.split('/');
+  if (segments.length === 4) {
+    theId = segments[3];
+  }
+  return theId;
 };
 
 PlayerLoader.load();

@@ -50,17 +50,42 @@ PlayAll.kill = function kill() {
 
 PlayAll.collectYouTubeIds = function collectYouTubeIds() {
   var ids = [];
-  var linkEls = document.querySelectorAll('a[href*="youtube.com"][href*="v="]');
+  var linkEls = document.querySelectorAll(
+    'a[href*="youtube.com"][href*="v="], a[href*="youtu.be"]'
+  );
+
   for (var i = 0; i < linkEls.length; ++i) {
     var linkEl = linkEls[i];
     var theId = this.getQueryParamFromURL(linkEl.href, 'v');
     if (theId) {
-      if (ids.indexOf(theId) === -1) {
-        ids.push(theId);
+      this.addToArrayIfNotAlreadyThere(theId, ids);
+    }
+    else {
+      theId = this.findIdFromShortYouTubeURL(linkEl.href);
+      if (theId) {
+        this.addToArrayIfNotAlreadyThere(theId, ids);
       }
     }
   }
   return ids;
+};
+
+PlayAll.findIdFromShortYouTubeURL = function findIdFromShortYouTubeURL(url) {
+  var theId = null;
+  // YouTube shortened URLs look like this: http://youtu.be/theId
+  var segments = url.split('/');
+  if (segments.length === 4) {
+    theId = segments[3];
+  }
+  return theId;
+};
+
+PlayAll.addToArrayIfNotAlreadyThere = function addToArrayIfNotAlreadyThere(item, 
+  array) {
+
+  if (array.indexOf(item) === -1) {
+    array.push(item);
+  }
 };
 
 PlayAll.getQueryParamFromURL = function getQueryParamFromURL(url, param) {
